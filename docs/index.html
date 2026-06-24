@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trading Systems Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">Live Portfolio Dashboard</p>
+      <h1>Trading Systems Lab</h1>
+      <p class="summary">
+        C++ exchange matching, market data, risk, strategy, simulated execution, and latency metrics.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article>
+        <h2>Matching Engine</h2>
+        <dl>
+          <div><dt>Order Types</dt><dd>Limit, market, cancel</dd></div>
+          <div><dt>Priority</dt><dd>Price-time</dd></div>
+          <div><dt>Latency</dt><dd>p50 / p99 / p99.9</dd></div>
+        </dl>
+      </article>
+      <article>
+        <h2>HFT Platform</h2>
+        <dl>
+          <div><dt>Feed</dt><dd>UDP + replay</dd></div>
+          <div><dt>Signal</dt><dd>Order-book imbalance</dd></div>
+          <div><dt>Workflow</dt><dd>Risk to gateway to exchange simulator</dd></div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Latest Benchmark Snapshot</h2>
+      <table>
+        <thead>
+          <tr><th>System</th><th>Metric</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Exchange</td><td>Throughput</td><td id="throughput">generated in CI</td></tr>
+          <tr><td>Exchange</td><td>p99 latency</td><td id="p99">generated in CI</td></tr>
+          <tr><td>Platform</td><td>Backtest PnL</td><td id="pnl">generated in CI</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="metrics.js"></script>
+</body>
+</html>
+
