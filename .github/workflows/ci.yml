@@ -1,0 +1,41 @@
+name: Build Test Benchmark
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-test-benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel 2
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Run exchange benchmark
+        run: ./build/exchange_matching_engine/exchange_benchmark | tee exchange_benchmark.txt
+
+      - name: Run HFT backtest
+        run: ./build/hft_trading_platform/hft_backtest hft_trading_platform/data/sample_market_data.csv docs/metrics.js | tee hft_backtest.txt
+
+      - name: Upload benchmark artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: trading-system-metrics
+          path: |
+            exchange_benchmark.txt
+            hft_backtest.txt
+            docs/metrics.js
+

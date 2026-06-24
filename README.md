@@ -34,9 +34,9 @@ Implements:
 ## Quick Start
 
 ```powershell
-.\scripts\build.ps1
-.\scripts\test.ps1
-.\scripts\run_demos.ps1
+powershell -ExecutionPolicy Bypass -File scripts\build.ps1
+powershell -ExecutionPolicy Bypass -File scripts\test.ps1
+powershell -ExecutionPolicy Bypass -File scripts\run_demos.ps1
 ```
 
 On Linux/macOS:
@@ -60,4 +60,3 @@ docs/                      Static dashboard for live metrics
 scripts/                   Local build/test/demo helpers
 .github/workflows/         CI and GitHub Pages deployment
 ```
-
