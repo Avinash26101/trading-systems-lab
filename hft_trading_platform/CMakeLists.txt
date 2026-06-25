@@ -22,4 +22,7 @@ target_link_libraries(hft_udp_demo PRIVATE hft_platform)
 add_executable(hft_tests tests/hft_tests.cpp)
 target_link_libraries(hft_tests PRIVATE hft_platform)
 add_test(NAME hft_tests COMMAND hft_tests)
-set_tests_properties(hft_tests PROPERTIES TIMEOUT 10)
+set_tests_properties(hft_tests PROPERTIES
+  TIMEOUT 10
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
