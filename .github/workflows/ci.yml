@@ -22,7 +22,7 @@ jobs:
         run: cmake --build build --config Release --parallel 2
 
       - name: Test
-        run: ctest --test-dir build --output-on-failure
+        run: ctest --test-dir build --output-on-failure --verbose --timeout 30
 
       - name: Run exchange benchmark
         run: ./build/exchange_matching_engine/exchange_benchmark | tee exchange_benchmark.txt
@@ -38,4 +38,3 @@ jobs:
             exchange_benchmark.txt
             hft_backtest.txt
             docs/metrics.js
-

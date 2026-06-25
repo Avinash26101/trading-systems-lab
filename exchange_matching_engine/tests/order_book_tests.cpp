@@ -52,10 +52,13 @@ static void test_async_engine() {
     assert(engine.submit({static_cast<exchange::OrderId>(i), exchange::Side::Buy,
                           exchange::OrderType::Limit, 100, 1}));
   }
-  while (engine.processed() < 100) {
+  int waits = 0;
+  while (engine.processed() < 100 && waits < 5000) {
     exchange::sleep_ms(1);
+    ++waits;
   }
   engine.stop();
+  assert(engine.processed() == 100);
   assert(engine.snapshot().live_orders == 100);
   assert(engine.latency().count() == 100);
 }
